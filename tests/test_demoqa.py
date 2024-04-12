@@ -15,7 +15,7 @@ def test_demoqa():
     registration_page.fill_date_of_birth(1981, 3, 14)
     registration_page.fill_subject("Hindi")
     registration_page.fill_reading_hobby()
-    registration_page.upload_picture()
+    registration_page.upload_picture("picture.jpg")
     registration_page.fill_address("Some address")
     registration_page.fill_state("NCR")
     registration_page.fill_city("Noida")
@@ -34,4 +34,3 @@ def test_demoqa():
         'Some address',
         'NCR Noida',
     )
-

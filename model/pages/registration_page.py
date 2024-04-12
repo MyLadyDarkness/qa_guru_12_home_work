@@ -1,7 +1,6 @@
-import os
+from selene import browser, have, command
 
-from selene import have, command
-from selene.support.shared import browser
+from helper import path
 
 
 class RegistrationPage:
@@ -60,8 +59,12 @@ class RegistrationPage:
     def fill_reading_hobby(self):
         return self.reading_hobby.click()
 
-    def upload_picture(self):
-        return self.picture().send_keys(os.path.abspath("resources/picture.jpg"))
+    def upload_picture(self, file):
+        return self.picture().send_keys(path(file))  # .....(f'resources/{file}'))
+        # self.picture().send_keys(os.path.abspath("resources/picture.jpg"))
+
+    # def upload_picture(self, file):
+    #     return self.picture().send_keys(.....(f'resources/{file}'))
 
     def fill_address(self, value):
         return self.address.type(value)
