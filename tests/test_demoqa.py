@@ -2,10 +2,16 @@ import datetime
 
 from data.users import User
 from model.pages.registration_page import RegistrationPage
+
+import allure
+from selene import by, be, browser
+
 from utils import attach
-from selene import browser, have, command
+
 
 def test_demoqa():
+
+
     test_user = User(
         first_name='Oleg',
         last_name='Teplov',
@@ -21,12 +27,17 @@ def test_demoqa():
         city='Noida'
     )
 
+
     registration_page = RegistrationPage()
-    registration_page.open_page()
-    registration_page.register(test_user)
 
-    registration_page.should_have_registered(test_user)
+    with allure.step("Open registration page"):
+        registration_page.open_page()
+        attach.add_html(browser)
 
-# attach.add_html(browser)
-# attach.add_screenshot(browser)
-# attach.add_logs(browser)
+    with allure.step("Fill form"):
+        registration_page.register(test_user)
+        attach.add_screenshot(browser)
+
+    with allure.step("Check filled fields"):
+        registration_page.should_have_registered(test_user)
+        attach.add_logs(browser)
