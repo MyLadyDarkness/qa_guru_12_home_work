@@ -1,8 +1,6 @@
 import allure
 from allure_commons.types import AttachmentType
 
-from tests.conftest import selenoid_url
-
 
 # Скриншоты
 def add_screenshot(browser):
@@ -23,7 +21,7 @@ def add_html(browser):
 
 
 def add_video(browser):
-    video_url = f"{selenoid_url}/video/" + browser.driver.session_id + ".mp4"
+    video_url = f"selenoid.autotests.cloud/wd/hub/video/" + browser.driver.session_id + ".mp4"
     html = "<html><body><video width='100%' height='100%' controls autoplay><source src='" \
            + video_url \
            + "' type='video/mp4'></video></body></html>"
